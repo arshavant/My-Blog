@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'blog/home.css' %}">
+</head>
+<body>
+    <header>
+        {% if not is_logged_in %}
+            <div class="header-container">
+                <h1>
+                    <a href="{% url 'login' %}">Login</a> / <a href="{% url 'signup' %}">SignUp</a>
+                </h1>
+            </div>
+        {% else %}
+            <div class="header-container">
+                <h1>Hi {{ account.username }}</h1>
+            </div>
+        {% endif %}
+    </header>
+
+    <main>
+        <div class="posts-container">
+            {% for post in posts %}
+                <a href="{% url 'single_post' slug=post.slug %}" class="post-link">
+                    <article class="post-card">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image"/>
+                        <div class="post-content">
+                            <h2>{{ post.title }}</h2>
+                        </div>
+                    </article>
+                </a>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <h1>This is Surena's Blog :3</h1>
+        </div>
+    </footer>
+</body>
+</html>

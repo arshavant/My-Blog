@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'blog/single-post.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1><a href="{% url 'home' %}">Home</a></h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="post-container">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image"/>
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.description|linebreaks }}</p>
+        </div>
+        <div class="comments-view">
+            {% for comment in comments %}
+                <div class="comment">
+                    <h2>{{ comment.author.username }}</h2>
+                    <p>{{ comment.text }}</p>
+                    <p>Rating: {{ comment.rating }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="comment-section">
+            {% if is_logged_in %}
+                <form method="post" class="comment-form">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button>Post</button>
+                </form>
+            {% else %}
+                <h2>You should <a href="{% url 'login' %}">Log in</a> / <a href="{% url 'signup' %}">Sign up</a> to post a comment</h2>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <h1>This is Surena's Blog :3</h1>
+        </div>
+    </footer>
+</body>
+</html>
