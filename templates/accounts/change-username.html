@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change your username</title>
+    <link rel="stylesheet" href="{% static 'accounts/change-username.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1><a href="{% url 'home' %}">Home</a></h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-wrapper">
+            <form method="post" class="form-container">
+                {% csrf_token %}
+                {{ username_change_form }}
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <h1>This is Surena's Blog :3</h1>
+        </div>
+    </footer>
+</body>
+</html>

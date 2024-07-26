@@ -12,3 +12,17 @@ class SignupForm(forms.Form):
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email Address')
     password = forms.CharField(widget=forms.PasswordInput, label='Password', max_length=100)
+
+
+class UsernameChangeForm(forms.Form):
+    username = forms.CharField(label="Username")
+
+
+class EmailChangeForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput, label="Email")
+
+
+class PasswordChangeForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput, label="Old Password")
+    new_password = forms.CharField(widget=forms.PasswordInput, label="New Password")
+    new_password_confirm = forms.CharField(widget=forms.PasswordInput, label="Confirm New Password")

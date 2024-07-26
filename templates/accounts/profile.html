@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ account.username }}</title>
+    <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>{{ account.username }}</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-container">
+            <h1>Change Account Info</h1>
+            <div class="form-container">
+                <h2>Username: {{ account.username }} <a href="{% url 'username_change' %}">Click To Change</a></h2>
+                <h2>Email: {{ account.email }} <a href="{% url 'change_email' %}">Click To Change</a></h2>
+                <label>The password is encoded and there is no way to view it, click to change it.</label>
+                <h2>Password: •••••••• <a href="{% url 'change_password' %}">Click To Change</a></h2>
+            </div>
+            <div id="logout-form">
+                <form method="post">
+                    {% csrf_token %}
+                    <button>Logout</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <h1>This is Surena's Blog :3</h1>
+        </div>
+    </footer>
+</body>
+</html>

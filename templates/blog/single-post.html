@@ -25,7 +25,7 @@
             {% for comment in comments %}
                 <div class="comment">
                     <h2>{{ comment.author.username }}</h2>
-                    <p>{{ comment.text }}</p>
+                    <p>{{ comment.text|linebreaks }}</p>
                     <p>Rating: {{ comment.rating }}</p>
                 </div>
             {% endfor %}

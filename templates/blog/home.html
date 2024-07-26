@@ -18,7 +18,7 @@
             </div>
         {% else %}
             <div class="header-container">
-                <h1>Hi {{ account.username }}</h1>
+                <h1><a href="{% url 'profile' %}">Hi {{ account.username }}</a></h1>
             </div>
         {% endif %}
     </header>

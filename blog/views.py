@@ -34,7 +34,7 @@ class HomeView(View):
 
 class SinglePostView(View):
     def get(self, request, slug):
-        post = Post.objects.get(slug=slug)
+        post = Post.objects.all().get(slug=slug)
         comments = Comment.objects.filter(post=post)
 
         comment_form = CommentForm()
@@ -69,3 +69,6 @@ class SinglePostView(View):
         except Account.DoesNotExist:
             request.session['is_logged_in'] = False
             return redirect('home')
+
+
+
